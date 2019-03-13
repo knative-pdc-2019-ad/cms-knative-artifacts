@@ -77,6 +77,23 @@
    kubectl apply --filename isv-channel.yaml
    ```
    
+1. Create a channel called `freshbooks-channel`.
+
+	 ```shell
+   kubectl apply --filename freshbooks-channel.yaml
+   ```
+   
+1. Create a channel called `github-channel`.
+
+	 ```shell
+   kubectl apply --filename github-channel.yaml
+   ```
+
+1. Create a channel called `common-channel`.
+
+	 ```shell
+   kubectl apply --filename common-channel.yaml
+   ```   
 
 1. Create a GCP PubSub Topic. If you change its name (`raw_event`), you also need
    to update the `topic` in the
@@ -118,8 +135,33 @@
 	``` 
    
 1. Create a function and subscribe it to the `isv-channel` channel:
+   Replace `FRESHBOOKS_CHANNEL_URL` value with the result from `Status.Address.Hostname` after doing ` kubectl describe channel freshbooks-channel`. Format as an url 
+   eg. http://{STatus.Address.Hostname}/
+   
+   Replace `GITHUB_CHANNEL_URL` value with the result from `Status.Address.Hostname` after doing ` kubectl describe channel github-channel`. Format as an url 
+      eg. http://{Status.Address.Hostname}/
    Change the env variables if adding additional sinks.
+   
 
 	```shell 
 	kubectl apply --filename custom-router-subscriber.yaml   
 	```
+	
+	
+1. Create a function and Subscribe it to the `common-channel`
+
+```shell 
+kubectl apply --filename common-function-subscriber.yaml
+```
+
+1. Create a function and Subscribe it to the `freshbooks-channel`
+
+```shell 
+kubectl apply --filename freshbooks-function-subscriber.yaml
+```
+
+1. Create a function and Subscribe it to the `github-channel`
+
+```shell 
+kubectl apply --filename github-function-subscriber.yaml
+```

@@ -10,7 +10,7 @@ spec:
     name: google-cloud-key
     key: key.json
   googleCloudProject: arv-project-233314  # Replace this
-  topic: raw_event
+  topic: raw_event # Replace this if needed
   sink:
     apiVersion: eventing.knative.dev/v1alpha1
     kind: Channel
