@@ -1,0 +1,38 @@
+# This is a very simple Knative Service that writes the input request to its log.
+
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: custom-router
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: docker.io/arvindkasale08/custom-router
+            env:
+              - name: FRESHBOOKS_CHANNEL_URL
+                value: http://freshbooks-channel
+              - name: GITHUB_CHANNEL_URL
+                  value: http://github-channel
+          serviceAccountName: custom-router-service-account
+
+---
+
+# Subscription from the GcpPubSubSource's output Channel to the Knative Service below.
+
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Subscription
+metadata:
+  name: custom-router-subscription
+spec:
+  channel:
+    apiVersion: eventing.knative.dev/v1alpha1
+    kind: Channel
+    name: isv-channel
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: custom-router
