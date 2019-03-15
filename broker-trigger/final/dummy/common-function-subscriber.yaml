@@ -10,7 +10,7 @@ spec:
       revisionTemplate:
         spec:
           container:
-            image: gcr.io/knative-broker/common-function
+            image: docker.io/arvindkasale08/common-function
 
 ---
 

@@ -3,7 +3,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: github-function
+  name: broker-github-function
 spec:
   runLatest:
     configuration:
@@ -12,21 +12,21 @@ spec:
           container:
             image: gcr.io/knative-broker/github-function
 
----
+#---
 
 # Subscription from the GcpPubSubSource's output Channel to the Knative Service below.
 
-apiVersion: eventing.knative.dev/v1alpha1
-kind: Subscription
-metadata:
-  name: github-function-subscription
-spec:
-  channel:
-    apiVersion: eventing.knative.dev/v1alpha1
-    kind: Channel
-    name: github-channel
-  subscriber:
-    ref:
-      apiVersion: serving.knative.dev/v1alpha1
-      kind: Service
-      name: github-function
+#apiVersion: eventing.knative.dev/v1alpha1
+#kind: Subscription
+#metadata:
+#  name: github-function-subscription
+#spec:
+#  channel:
+#    apiVersion: eventing.knative.dev/v1alpha1
+#    kind: Channel
+#    name: github-channel
+#  subscriber:
+#    ref:
+#      apiVersion: serving.knative.dev/v1alpha1
+#      kind: Service
+#      name: github-function

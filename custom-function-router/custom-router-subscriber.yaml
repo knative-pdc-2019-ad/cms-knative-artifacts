@@ -10,14 +10,14 @@ spec:
       revisionTemplate:
         spec:
           container:
-            image: docker.io/arvindkasale08/custom-router
+            image: gcr.io/knative-broker/custom-router
             env:
               - name: FRESHBOOKS_CHANNEL_URL
-                value: http://freshbooks-channel-channel-m76w9.default.svc.cluster.local/
+                value: http://freshbooks-channel-channel-vcs5x.default.svc.cluster.local/
               - name: GITHUB_CHANNEL_URL
-                value: http://github-channel-channel-wds49.default.svc.cluster.local/
+                value: http://github-channel-channel-r92dn.default.svc.cluster.local/
               - name: COMMON_CHANNEL_URL
-                value: http://common-channel-channel-mh77r.default.svc.cluster.local/
+                value: http://common-channel-channel-fxpxg.default.svc.cluster.local/
           serviceAccountName: custom-router-service-account
 
 ---

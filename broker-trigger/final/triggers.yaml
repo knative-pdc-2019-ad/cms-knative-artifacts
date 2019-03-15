@@ -1,0 +1,29 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: broker-github-trigger
+spec:
+  filter:
+    sourceAndType:
+      type: dev.knative.github
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: broker-github-function
+
+---
+
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: broker-freshbooks-trigger
+spec:
+  filter:
+    sourceAndType:
+      type: dev.knative.freshbooks
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: broker-freshbooks-function

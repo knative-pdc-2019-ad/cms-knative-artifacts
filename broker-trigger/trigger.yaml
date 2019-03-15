@@ -1,0 +1,29 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: filtering-type-1
+spec:
+  filter:
+    sourceAndType:
+      type: dev.knative.foo.1
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: my-service-1
+
+---
+
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: filtering-type-2
+spec:
+  filter:
+    sourceAndType:
+      type: dev.knative.foo.2
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: my-service-2

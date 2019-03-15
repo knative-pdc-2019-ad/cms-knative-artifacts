@@ -1,0 +1,16 @@
+# This is a very simple Knative Service that writes the input request to its log.
+
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: broker-invoker
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: gcr.io/knative-broker/broker-invoker
+            env:
+              - name: BROKER_URL
+                value: http://default-broker.default.svc.cluster.local/

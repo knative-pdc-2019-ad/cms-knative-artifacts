@@ -10,7 +10,7 @@ spec:
       revisionTemplate:
         spec:
           container:
-            image: docker.io/arvindkasale08/freshbooks-function
+            image: gcr.io/knative-broker/freshbooks-function
 
 ---
 

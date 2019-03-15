@@ -1,32 +1,17 @@
 # This is a very simple Knative Service that writes the input request to its log.
-
-apiVersion: serving.knative.dev/v1alpha1
-kind: Service
-metadata:
-  name: common-function
-spec:
-  runLatest:
-    configuration:
-      revisionTemplate:
-        spec:
-          container:
-            image: gcr.io/knative-broker/common-function
-
----
-
 # Subscription from the GcpPubSubSource's output Channel to the Knative Service below.
 
 apiVersion: eventing.knative.dev/v1alpha1
 kind: Subscription
 metadata:
-  name: common-function-subscription
+  name: cron-subscription
 spec:
   channel:
     apiVersion: eventing.knative.dev/v1alpha1
     kind: Channel
-    name: common-channel
+    name: cron-channel
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1alpha1
       kind: Service
-      name: common-function
+      name: my-service

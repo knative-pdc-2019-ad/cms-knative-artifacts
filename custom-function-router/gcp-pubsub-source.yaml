@@ -4,12 +4,12 @@
 apiVersion: sources.eventing.knative.dev/v1alpha1
 kind: GcpPubSubSource
 metadata:
-  name: gcp-raw-event-source
+  name: gcp-raw-event-source-updated
 spec:
   gcpCredsSecret:  # A secret in the knative-sources namespace
-    name: google-cloud-key
+    name: raw-event-google-cloud-key
     key: key.json
-  googleCloudProject: arv-project-233314  # Replace this
+  googleCloudProject: knative-broker  # Replace this
   topic: raw_event # Replace this if needed
   sink:
     apiVersion: eventing.knative.dev/v1alpha1
